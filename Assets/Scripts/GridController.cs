@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GridController : MonoBehaviour
@@ -8,9 +7,16 @@ public class GridController : MonoBehaviour
 
     [SerializeField]
     private GameObject piecePrefab;
-
     [SerializeField]
     private Vector3 originPosition;
+
+    [Header("Piece Colors")]
+    [SerializeField]
+    private Material pieceOneMaterial;
+    [SerializeField]
+    private Material pieceSecondMaterial;
+
+    // Section for tuning
 
     private Piece[,] grid = new Piece[8, 8];
 
@@ -21,6 +27,8 @@ public class GridController : MonoBehaviour
     {
         // Debug.Log(grid);
 
+        System.Random rand = new System.Random();
+
         for (int row = 0; row < grid.GetLength(0); row++)
         {
             for (int column = 0; column < grid.GetLength(1); column++)
@@ -30,7 +38,27 @@ public class GridController : MonoBehaviour
                 grid[row, column] = new Piece(newWorldPosition, new Vector2(row, column));
                 // Debug.Log(grid[row, column]);
 
-                Instantiate(piecePrefab, grid[row, column].GetPosition(), Quaternion.identity);
+                GameObject gameObject = Instantiate(piecePrefab, grid[row, column].GetPosition(), Quaternion.identity);
+                int theNumber = rand.Next(13, 101);
+                // Debug.Log(theNumber);
+                if (theNumber > 23 && theNumber < 55)
+                {
+                    // Debug.Log("changing color");
+                    // Get the Renderer component from the new game object
+                    var gameObjectRenderer = gameObject.GetComponent<Renderer>();
+
+                    // Call SetColor using the shader property name "_Color" and setting the color to red
+                    gameObjectRenderer.material = pieceOneMaterial;
+                }
+                else if (theNumber >= 55 && theNumber < 85)
+                {
+                    // Debug.Log("changing color");
+                    // Get the Renderer component from the new game object
+                    var gameObjectRenderer = gameObject.GetComponent<Renderer>();
+
+                    // Call SetColor using the shader property name "_Color" and setting the color to red
+                    gameObjectRenderer.material = pieceSecondMaterial;
+                }
             }
         }
     }

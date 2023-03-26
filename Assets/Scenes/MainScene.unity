@@ -473,3 +473,5 @@ MonoBehaviour:
   piecePrefab: {fileID: 1317604683910984299, guid: 89f54e4733aed60458fcabbd0b234d41,
     type: 3}
   originPosition: {x: -6, y: 0, z: 4}
+  pieceOneMaterial: {fileID: 2100000, guid: 9d6d3cb194501dc4b9b1d370c9707145, type: 2}
+  pieceSecondMaterial: {fileID: 2100000, guid: c89982d5359ea7546ace80bf455861b5, type: 2}
