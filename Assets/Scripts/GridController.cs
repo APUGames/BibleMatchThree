@@ -15,6 +15,10 @@ public class GridController : MonoBehaviour
     private Material pieceOneMaterial;
     [SerializeField]
     private Material pieceSecondMaterial;
+    [SerializeField]
+    private Material pieceThirdMaterial;
+    [SerializeField]
+    private Material pieceFourMaterial;
 
     // Section for tuning
 
@@ -41,7 +45,7 @@ public class GridController : MonoBehaviour
                 GameObject gameObject = Instantiate(piecePrefab, grid[row, column].GetPosition(), Quaternion.identity);
                 int theNumber = rand.Next(13, 101);
                 // Debug.Log(theNumber);
-                if (theNumber > 23 && theNumber < 55)
+                if (theNumber > 30 && theNumber < 45)
                 {
                     // Debug.Log("changing color");
                     // Get the Renderer component from the new game object
@@ -50,7 +54,16 @@ public class GridController : MonoBehaviour
                     // Call SetColor using the shader property name "_Color" and setting the color to red
                     gameObjectRenderer.material = pieceOneMaterial;
                 }
-                else if (theNumber >= 55 && theNumber < 85)
+                else if (theNumber >= 45 && theNumber < 60)
+                {
+                    // Debug.Log("changing color");
+                    // Get the Renderer component from the new game object
+                    var gameObjectRenderer = gameObject.GetComponent<Renderer>();
+
+                    // Call SetColor using the shader property name "_Color" and setting the color to red
+                    gameObjectRenderer.material = pieceFourMaterial;
+                }
+                else if (theNumber >= 60 && theNumber < 85)
                 {
                     // Debug.Log("changing color");
                     // Get the Renderer component from the new game object
@@ -58,6 +71,15 @@ public class GridController : MonoBehaviour
 
                     // Call SetColor using the shader property name "_Color" and setting the color to red
                     gameObjectRenderer.material = pieceSecondMaterial;
+                }
+                else if (theNumber >= 85 && theNumber < 101)
+                {
+                    // Debug.Log("changing color");
+                    // Get the Renderer component from the new game object
+                    var gameObjectRenderer = gameObject.GetComponent<Renderer>();
+
+                    // Call SetColor using the shader property name "_Color" and setting the color to red
+                    gameObjectRenderer.material = pieceThirdMaterial;
                 }
             }
         }
