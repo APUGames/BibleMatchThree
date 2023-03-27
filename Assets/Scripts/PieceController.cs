@@ -40,7 +40,8 @@ public class PieceController : MonoBehaviour
             Debug.Log("X: " + seedPiece.x + " Y: " + seedPiece.y);
 
             controller.pressedDown = false;
-            controller.pressedDownPosition = Vector2.zero;
+            // controller.pressedDownPosition = Vector2.zero;
+            controller.pressedUpPosition = seedPiece;
         }
     }
 

@@ -22,6 +22,10 @@ public class GridController : MonoBehaviour
 
     public bool pressedDown;
     public Vector2 pressedDownPosition;
+    public Vector2 pressedUpPosition;
+
+    private Vector2 startMovementPiecePosition;
+    private Vector2 endMovementPiecePosition;
 
     // Section for tuning
 
@@ -95,9 +99,13 @@ public class GridController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ValidMove(Vector2 start, Vector2 end)
     {
-        
+        startMovementPiecePosition = start;
+        endMovementPiecePosition = end;
+
+        // Get type of piece based on start position
+        // and check for neighboring pieces of the
+        // same type below and above the end position
     }
 }
