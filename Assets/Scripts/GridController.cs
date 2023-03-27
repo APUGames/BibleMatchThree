@@ -20,6 +20,9 @@ public class GridController : MonoBehaviour
     [SerializeField]
     private Material pieceFourMaterial;
 
+    public bool pressedDown;
+    public Vector2 pressedDownPosition;
+
     // Section for tuning
 
     private Piece[,] grid = new Piece[8, 8];
@@ -31,6 +34,8 @@ public class GridController : MonoBehaviour
     {
         // Debug.Log(grid);
 
+        pressedDown = false;
+
         System.Random rand = new System.Random();
 
         for (int row = 0; row < grid.GetLength(0); row++)
@@ -39,7 +44,8 @@ public class GridController : MonoBehaviour
             {
                 // 4-0=4, 4-1=3, 4-2=2, 4-3=1, 4-4=0, 4-5=-1, 4-6=-2, 4-7=-3
                 Vector3 newWorldPosition = new Vector3(originPosition.x + row, originPosition.y, originPosition.z - column);
-                grid[row, column] = new Piece(newWorldPosition, new Vector2(row, column));
+                Piece newPiece = new Piece(newWorldPosition, new Vector2(row, column));
+                grid[row, column] = newPiece;
                 // Debug.Log(grid[row, column]);
 
                 GameObject gameObject = Instantiate(piecePrefab, grid[row, column].GetPosition(), Quaternion.identity);
@@ -81,6 +87,10 @@ public class GridController : MonoBehaviour
                     // Call SetColor using the shader property name "_Color" and setting the color to red
                     gameObjectRenderer.material = pieceThirdMaterial;
                 }
+
+                // Set new piece to game object's piece controller
+                PieceController controller = gameObject.GetComponent<PieceController>();
+                controller.SetPiece(newPiece);
             }
         }
     }

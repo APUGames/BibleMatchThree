@@ -43,6 +43,11 @@ public class Piece
         return position;
     }
 
+    public Vector3 GetGridPosition()
+    {
+        return gridPosition;
+    }
+
     public PieceTypes GetPieceType()
     {
         return pieceType;
