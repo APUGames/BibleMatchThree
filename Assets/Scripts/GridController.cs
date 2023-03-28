@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridController : MonoBehaviour
@@ -119,9 +120,15 @@ public class GridController : MonoBehaviour
         {
             Debug.Log("Switching");
 
+            // Update the visual layer
             Vector3 placeHolderPosition = pressedDownGameObject.transform.position;
             pressedDownGameObject.transform.position = pressedUpGameObject.transform.position;
             pressedUpGameObject.transform.position = placeHolderPosition;
+
+            // Update the data layer to match the visual layer
+            Piece placeHolderPiece = grid[(int)endMovementPiecePosition.x, (int)endMovementPiecePosition.y];
+            grid[(int)endMovementPiecePosition.x, (int)endMovementPiecePosition.y] = grid[(int)startMovementPiecePosition.x, (int)startMovementPiecePosition.y];
+            grid[(int)startMovementPiecePosition.x, (int)startMovementPiecePosition.y] = placeHolderPiece;
 
             validMoveInProcess = false;
         }
@@ -138,15 +145,20 @@ public class GridController : MonoBehaviour
         // same type below and above the end position
         Piece topPiece = grid[(int)end.x, (int)end.y-1];
         Piece bottomPiece = grid[(int)end.x, (int)end.y+1];
-        Piece midPiece = grid[(int)end.x, (int)end.y];
+        Piece midPiece = grid[(int)start.x, (int)start.y];
+        Debug.Log("Top piece type: " + topPiece.GetPieceType());
+        Debug.Log("Bottom piece type: " + bottomPiece.GetPieceType());
+        Debug.Log("Mid piece type: " + midPiece.GetPieceType());
         if (topPiece.GetPieceType() == bottomPiece.GetPieceType())
         {
             if (topPiece.GetPieceType() == midPiece.GetPieceType())
             {
                 validMoveInProcess = true;
+                Debug.Log("======= MATCHED =======");
             }
         }
 
+        /*
         Piece leftPiece = grid[(int)end.x-1, (int)end.y];
         Piece leftLeftPiece = grid[(int)end.x-2, (int)end.y];
         Piece endPiece = grid[(int)end.x, (int)end.y];
@@ -156,7 +168,7 @@ public class GridController : MonoBehaviour
             {
                 validMoveInProcess = true;
             }
-        }
+        }*/
 
         Debug.Log("not valid move");
     }

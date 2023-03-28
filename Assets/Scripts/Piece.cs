@@ -44,6 +44,11 @@ public class Piece
         this.pieceType = pieceType;
     }
 
+    public void SetGridPosition(Vector2 position)
+    {
+        this.gridPosition = position;
+    }
+
     public Vector3 GetPosition()
     {
         return position;

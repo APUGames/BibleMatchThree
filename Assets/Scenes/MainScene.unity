@@ -477,3 +477,8 @@ MonoBehaviour:
   pieceSecondMaterial: {fileID: 2100000, guid: c89982d5359ea7546ace80bf455861b5, type: 2}
   pieceThirdMaterial: {fileID: 2100000, guid: 1ae15f224b2fa654ab1fdb0f1cbe31df, type: 2}
   pieceFourMaterial: {fileID: 2100000, guid: 28d77c161dda03f4f88e97db0cbbaf88, type: 2}
+  pressedDown: 0
+  pressedDownPosition: {x: 0, y: 0}
+  pressedUpPosition: {x: 0, y: 0}
+  pressedDownGameObject: {fileID: 0}
+  pressedUpGameObject: {fileID: 0}
