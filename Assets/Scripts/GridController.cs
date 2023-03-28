@@ -146,6 +146,7 @@ public class GridController : MonoBehaviour
         Piece topPiece = grid[(int)end.x, (int)end.y-1];
         Piece bottomPiece = grid[(int)end.x, (int)end.y+1];
         Piece midPiece = grid[(int)start.x, (int)start.y];
+        Piece toDestroy = grid[(int)end.x, (int)end.y];
         Debug.Log("Top piece type: " + topPiece.GetPieceType());
         Debug.Log("Bottom piece type: " + bottomPiece.GetPieceType());
         Debug.Log("Mid piece type: " + midPiece.GetPieceType());
@@ -156,7 +157,7 @@ public class GridController : MonoBehaviour
                 validMoveInProcess = true;
                 topPiece.SetForDestruction();
                 bottomPiece.SetForDestruction();
-                midPiece.SetForDestruction();
+                toDestroy.SetForDestruction();
                 Debug.Log("======= MATCHED =======");
             }
         }
