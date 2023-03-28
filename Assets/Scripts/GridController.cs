@@ -161,6 +161,8 @@ public class GridController : MonoBehaviour
             }
         }
 
+        // Checking for pattern of moving down and having
+        // two matching types on the left
         /*
         Piece leftPiece = grid[(int)end.x-1, (int)end.y];
         Piece leftLeftPiece = grid[(int)end.x-2, (int)end.y];
