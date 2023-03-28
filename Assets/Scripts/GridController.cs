@@ -154,6 +154,9 @@ public class GridController : MonoBehaviour
             if (topPiece.GetPieceType() == midPiece.GetPieceType())
             {
                 validMoveInProcess = true;
+                topPiece.SetForDestruction();
+                bottomPiece.SetForDestruction();
+                midPiece.SetForDestruction();
                 Debug.Log("======= MATCHED =======");
             }
         }
@@ -171,5 +174,11 @@ public class GridController : MonoBehaviour
         }*/
 
         Debug.Log("not valid move");
+    }
+
+    public bool IsDestroyed(Vector2 gridPosition)
+    {
+        Piece piece = grid[(int)gridPosition.x, (int)gridPosition.y];
+        return piece.GetDestruction();
     }
 }

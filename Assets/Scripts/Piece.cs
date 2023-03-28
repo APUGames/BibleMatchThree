@@ -17,12 +17,14 @@ public class Piece
     private Vector3 position;
     private Vector2 gridPosition;
     private PieceTypes pieceType;
+    private bool setForDestruction;
 
     public Piece()
     {
         position = Vector3.zero;
         gridPosition = Vector2.zero;
         pieceType = PieceTypes.Deborah;
+        setForDestruction = false;
     }
 
     public Piece(Vector3 position, Vector2 gridPosition)
@@ -30,6 +32,7 @@ public class Piece
         this.position = position;
         this.gridPosition = gridPosition;
         this.pieceType = PieceTypes.Andrew;
+        this.setForDestruction = false;
     }
 
     public Piece(Vector3 position, Vector2 gridPosition, PieceTypes pieceType)
@@ -37,6 +40,12 @@ public class Piece
         this.position = position;
         this.gridPosition = gridPosition;
         this.pieceType = pieceType;
+        this.setForDestruction = false;
+    }
+
+    public void SetForDestruction()
+    {
+        this.setForDestruction = true;
     }
 
     public void SetPieceType(PieceTypes pieceType)
@@ -62,5 +71,10 @@ public class Piece
     public PieceTypes GetPieceType()
     {
         return pieceType;
+    }
+
+    public bool GetDestruction()
+    {
+        return setForDestruction;
     }
 }
