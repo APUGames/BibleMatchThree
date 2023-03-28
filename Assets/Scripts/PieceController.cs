@@ -44,6 +44,8 @@ public class PieceController : MonoBehaviour
             // controller.pressedDownPosition = Vector2.zero;
             controller.pressedUpPosition = seedPiece;
             controller.pressedUpGameObject = this.gameObject;
+
+            controller.ValidMove(controller.pressedDownPosition, seedPiece);
         }
     }
 

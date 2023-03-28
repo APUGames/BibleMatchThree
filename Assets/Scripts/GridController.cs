@@ -129,6 +129,7 @@ public class GridController : MonoBehaviour
 
     public void ValidMove(Vector2 start, Vector2 end)
     {
+        Debug.Log("validating start (" + start.x + ", " + start.y + ") | end (" + end.x + ", " + end.y + ")");
         startMovementPiecePosition = start;
         endMovementPiecePosition = end;
 
@@ -145,5 +146,18 @@ public class GridController : MonoBehaviour
                 validMoveInProcess = true;
             }
         }
+
+        Piece leftPiece = grid[(int)end.x-1, (int)end.y];
+        Piece leftLeftPiece = grid[(int)end.x-2, (int)end.y];
+        Piece endPiece = grid[(int)end.x, (int)end.y];
+        if (leftPiece.GetPieceType() == leftLeftPiece.GetPieceType())
+        {
+            if (leftPiece.GetPieceType() == endPiece.GetPieceType())
+            {
+                validMoveInProcess = true;
+            }
+        }
+
+        Debug.Log("not valid move");
     }
 }
