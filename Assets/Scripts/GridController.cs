@@ -23,9 +23,13 @@ public class GridController : MonoBehaviour
     public bool pressedDown;
     public Vector2 pressedDownPosition;
     public Vector2 pressedUpPosition;
+    public GameObject pressedDownGameObject;
+    public GameObject pressedUpGameObject;
 
     private Vector2 startMovementPiecePosition;
     private Vector2 endMovementPiecePosition;
+
+    private bool validMoveInProcess = false;
 
     // Section for tuning
 
@@ -49,10 +53,10 @@ public class GridController : MonoBehaviour
                 // 4-0=4, 4-1=3, 4-2=2, 4-3=1, 4-4=0, 4-5=-1, 4-6=-2, 4-7=-3
                 Vector3 newWorldPosition = new Vector3(originPosition.x + row, originPosition.y, originPosition.z - column);
                 Piece newPiece = new Piece(newWorldPosition, new Vector2(row, column));
-                grid[row, column] = newPiece;
+                
                 // Debug.Log(grid[row, column]);
 
-                GameObject gameObject = Instantiate(piecePrefab, grid[row, column].GetPosition(), Quaternion.identity);
+                GameObject gameObject = Instantiate(piecePrefab, newPiece.GetPosition(), Quaternion.identity);
                 int theNumber = rand.Next(13, 101);
                 // Debug.Log(theNumber);
                 if (theNumber > 30 && theNumber < 45)
@@ -63,6 +67,8 @@ public class GridController : MonoBehaviour
 
                     // Call SetColor using the shader property name "_Color" and setting the color to red
                     gameObjectRenderer.material = pieceOneMaterial;
+
+                    newPiece.SetPieceType(PieceTypes.Elisha);
                 }
                 else if (theNumber >= 45 && theNumber < 60)
                 {
@@ -72,6 +78,8 @@ public class GridController : MonoBehaviour
 
                     // Call SetColor using the shader property name "_Color" and setting the color to red
                     gameObjectRenderer.material = pieceFourMaterial;
+
+                    newPiece.SetPieceType(PieceTypes.Lamb);
                 }
                 else if (theNumber >= 60 && theNumber < 85)
                 {
@@ -81,6 +89,8 @@ public class GridController : MonoBehaviour
 
                     // Call SetColor using the shader property name "_Color" and setting the color to red
                     gameObjectRenderer.material = pieceSecondMaterial;
+
+                    newPiece.SetPieceType(PieceTypes.Andrew);
                 }
                 else if (theNumber >= 85 && theNumber < 101)
                 {
@@ -90,12 +100,30 @@ public class GridController : MonoBehaviour
 
                     // Call SetColor using the shader property name "_Color" and setting the color to red
                     gameObjectRenderer.material = pieceThirdMaterial;
+
+                    newPiece.SetPieceType(PieceTypes.Hannah);
                 }
 
                 // Set new piece to game object's piece controller
                 PieceController controller = gameObject.GetComponent<PieceController>();
                 controller.SetPiece(newPiece);
+
+                grid[row, column] = newPiece;
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (validMoveInProcess)
+        {
+            Debug.Log("Switching");
+
+            Vector3 placeHolderPosition = pressedDownGameObject.transform.position;
+            pressedDownGameObject.transform.position = pressedUpGameObject.transform.position;
+            pressedUpGameObject.transform.position = placeHolderPosition;
+
+            validMoveInProcess = false;
         }
     }
 
@@ -107,5 +135,15 @@ public class GridController : MonoBehaviour
         // Get type of piece based on start position
         // and check for neighboring pieces of the
         // same type below and above the end position
+        Piece topPiece = grid[(int)end.x, (int)end.y-1];
+        Piece bottomPiece = grid[(int)end.x, (int)end.y+1];
+        Piece midPiece = grid[(int)end.x, (int)end.y];
+        if (topPiece.GetPieceType() == bottomPiece.GetPieceType())
+        {
+            if (topPiece.GetPieceType() == midPiece.GetPieceType())
+            {
+                validMoveInProcess = true;
+            }
+        }
     }
 }

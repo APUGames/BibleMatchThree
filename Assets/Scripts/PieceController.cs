@@ -15,6 +15,7 @@ public class PieceController : MonoBehaviour
         GridController controller = GameObject.Find("GameManager").GetComponent<GridController>();
         controller.pressedDown= true;
         controller.pressedDownPosition = seedPiece;
+        controller.pressedDownGameObject = this.gameObject;
     }
 
     private void OnMouseUp()
@@ -42,6 +43,7 @@ public class PieceController : MonoBehaviour
             controller.pressedDown = false;
             // controller.pressedDownPosition = Vector2.zero;
             controller.pressedUpPosition = seedPiece;
+            controller.pressedUpGameObject = this.gameObject;
         }
     }
 

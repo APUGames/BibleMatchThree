@@ -5,7 +5,8 @@ public enum PieceTypes
     Deborah = 0,
     Elisha = 1,
     Lamb = 2,
-    Andrew = 3
+    Andrew = 3,
+    Hannah = 4
 }
 
 public class Piece
@@ -21,7 +22,7 @@ public class Piece
     {
         position = Vector3.zero;
         gridPosition = Vector2.zero;
-        pieceType = PieceTypes.Andrew;
+        pieceType = PieceTypes.Deborah;
     }
 
     public Piece(Vector3 position, Vector2 gridPosition)
@@ -35,6 +36,11 @@ public class Piece
     {
         this.position = position;
         this.gridPosition = gridPosition;
+        this.pieceType = pieceType;
+    }
+
+    public void SetPieceType(PieceTypes pieceType)
+    {
         this.pieceType = pieceType;
     }
 
