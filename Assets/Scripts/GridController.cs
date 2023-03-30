@@ -143,38 +143,51 @@ public class GridController : MonoBehaviour
         // Get type of piece based on start position
         // and check for neighboring pieces of the
         // same type below and above the end position
-        Piece topPiece = grid[(int)end.x, (int)end.y-1];
-        Piece bottomPiece = grid[(int)end.x, (int)end.y+1];
-        Piece midPiece = grid[(int)start.x, (int)start.y];
-        Piece toDestroy = grid[(int)end.x, (int)end.y];
-        Debug.Log("Top piece type: " + topPiece.GetPieceType());
-        Debug.Log("Bottom piece type: " + bottomPiece.GetPieceType());
-        Debug.Log("Mid piece type: " + midPiece.GetPieceType());
-        if (topPiece.GetPieceType() == bottomPiece.GetPieceType())
+        try
         {
-            if (topPiece.GetPieceType() == midPiece.GetPieceType())
+            Piece topPiece1 = grid[(int)end.x, (int)end.y - 1];
+            Piece bottomPiece1 = grid[(int)end.x, (int)end.y + 1];
+            Debug.Log("Top piece type: " + topPiece1.GetPieceType());
+            Debug.Log("Bottom piece type: " + bottomPiece1.GetPieceType());
+            Piece midPiece1 = grid[(int)start.x, (int)start.y];
+            Piece toDestroy1 = grid[(int)end.x, (int)end.y];
+            Debug.Log("Mid piece type: " + midPiece1.GetPieceType());
+            if (topPiece1.GetPieceType() == bottomPiece1.GetPieceType())
             {
-                validMoveInProcess = true;
-                topPiece.SetForDestruction();
-                bottomPiece.SetForDestruction();
-                toDestroy.SetForDestruction();
-                Debug.Log("======= MATCHED =======");
+                if (topPiece1.GetPieceType() == midPiece1.GetPieceType())
+                {
+                    validMoveInProcess = true;
+                    topPiece1.SetForDestruction();
+                    bottomPiece1.SetForDestruction();
+                    toDestroy1.SetForDestruction();
+                    Debug.Log("======= MATCHED =======");
+                }
             }
+        }
+        catch (IndexOutOfRangeException)  // CS0168
+        {
+            // Set IndexOutOfRangeException to the new exception's InnerException.
         }
 
         // Checking for pattern of moving down and having
         // two matching types on the left
-        /*
-        Piece leftPiece = grid[(int)end.x-1, (int)end.y];
-        Piece leftLeftPiece = grid[(int)end.x-2, (int)end.y];
-        Piece endPiece = grid[(int)end.x, (int)end.y];
-        if (leftPiece.GetPieceType() == leftLeftPiece.GetPieceType())
+        try
         {
-            if (leftPiece.GetPieceType() == endPiece.GetPieceType())
+            Piece leftPiece = grid[(int)end.x - 1, (int)end.y];
+            Piece leftLeftPiece = grid[(int)end.x - 2, (int)end.y];
+            Piece endPiece = grid[(int)end.x, (int)end.y];
+            if (leftPiece.GetPieceType() == leftLeftPiece.GetPieceType())
             {
-                validMoveInProcess = true;
+                if (leftPiece.GetPieceType() == endPiece.GetPieceType())
+                {
+                    validMoveInProcess = true;
+                }
             }
-        }*/
+        }
+        catch (IndexOutOfRangeException)  // CS0168
+        {
+            // Set IndexOutOfRangeException to the new exception's InnerException.
+        }
 
         Debug.Log("not valid move");
     }
