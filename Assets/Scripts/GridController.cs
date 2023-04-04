@@ -188,9 +188,10 @@ public class GridController : MonoBehaviour
             }
         }
 
+        /*
         if (!matchFound)
         {
-            // Checking for pattern of moving down and having
+            // Checking for pattern of moving up or down and having
             // two matching types on the left
             try
             {
@@ -219,7 +220,7 @@ public class GridController : MonoBehaviour
 
         if (!matchFound)
         {
-            // Checking for pattern of moving down and having
+            // Checking for pattern of moving up or down and having
             // two matching types on the right
             try
             {
@@ -274,6 +275,35 @@ public class GridController : MonoBehaviour
                 // Set IndexOutOfRangeException to the new exception's InnerException.
             }
         }
+
+        if (!matchFound)
+        {
+            // Checking for pattern of moving up, down, left, or right and having
+            // two matching types above
+            try
+            {
+                Piece abovePiece = grid[(int)end.x, (int)end.y + 1];
+                Piece aboveAbovePiece = grid[(int)end.x, (int)end.y + 2];
+                Piece checkPiece4 = grid[(int)start.x, (int)start.y];
+                if (abovePiece.GetPieceType() == aboveAbovePiece.GetPieceType())
+                {
+                    if (abovePiece.GetPieceType() == checkPiece4.GetPieceType())
+                    {
+                        validMoveInProcess = true;
+                        Piece toDestroy2 = grid[(int)end.x, (int)end.y];
+
+                        abovePiece.SetForDestruction();
+                        aboveAbovePiece.SetForDestruction();
+                        toDestroy2.SetForDestruction();
+                        Debug.Log("======= MATCHED =======");
+                    }
+                }
+            }
+            catch (IndexOutOfRangeException)  // CS0168
+            {
+                // Set IndexOutOfRangeException to the new exception's InnerException.
+            }
+        }*/
 
         Debug.Log("not valid move");
     }

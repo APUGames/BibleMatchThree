@@ -22,7 +22,7 @@ public class PieceController : MonoBehaviour
         Debug.Log("X: " + seedPiece.x + " Y: " + seedPiece.y);
 
         GridController controller = GameObject.Find("GameManager").GetComponent<GridController>();
-        controller.pressedDown= true;
+        controller.pressedDown = true;
         controller.pressedDownPosition = seedPiece;
         controller.pressedDownGameObject = this.gameObject;
     }
