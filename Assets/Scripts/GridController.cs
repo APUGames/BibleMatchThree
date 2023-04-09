@@ -188,7 +188,6 @@ public class GridController : MonoBehaviour
             }
         }
 
-        /*
         if (!matchFound)
         {
             // Checking for pattern of moving up or down and having
@@ -202,6 +201,7 @@ public class GridController : MonoBehaviour
                 {
                     if (leftPiece.GetPieceType() == checkPiece1.GetPieceType())
                     {
+                        matchFound = true;
                         validMoveInProcess = true;
                         Piece toDestroy2 = grid[(int)end.x, (int)end.y];
 
@@ -231,6 +231,7 @@ public class GridController : MonoBehaviour
                 {
                     if (rightPiece.GetPieceType() == checkPiece2.GetPieceType())
                     {
+                        matchFound = true;
                         validMoveInProcess = true;
                         Piece toDestroy2 = grid[(int)end.x, (int)end.y];
 
@@ -260,6 +261,7 @@ public class GridController : MonoBehaviour
                 {
                     if (rightPiece.GetPieceType() == checkPiece3.GetPieceType())
                     {
+                        matchFound = true;
                         validMoveInProcess = true;
                         Piece toDestroy2 = grid[(int)end.x, (int)end.y];
 
@@ -289,12 +291,16 @@ public class GridController : MonoBehaviour
                 {
                     if (abovePiece.GetPieceType() == checkPiece4.GetPieceType())
                     {
+                        matchFound = true;
                         validMoveInProcess = true;
                         Piece toDestroy2 = grid[(int)end.x, (int)end.y];
 
                         abovePiece.SetForDestruction();
                         aboveAbovePiece.SetForDestruction();
                         toDestroy2.SetForDestruction();
+
+                        // TODO: Null out place in grid
+
                         Debug.Log("======= MATCHED =======");
                     }
                 }
@@ -303,7 +309,7 @@ public class GridController : MonoBehaviour
             {
                 // Set IndexOutOfRangeException to the new exception's InnerException.
             }
-        }*/
+        }
 
         Debug.Log("not valid move");
     }
