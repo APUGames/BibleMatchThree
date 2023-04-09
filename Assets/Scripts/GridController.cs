@@ -300,6 +300,7 @@ public class GridController : MonoBehaviour
                         toDestroy2.SetForDestruction();
 
                         // TODO: Null out place in grid
+                        // TODO: Create method to get grid pieces properly
 
                         Debug.Log("======= MATCHED =======");
                     }
