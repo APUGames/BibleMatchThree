@@ -297,8 +297,8 @@ MonoBehaviour:
     y: 676
     width: 1210
     height: 641
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -488,23 +488,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 2afbffff
+      m_SelectedIDs: 78680000
+      m_LastClickedID: 26744
+      m_ExpandedIDs: bc36d6ffca36d6ff2afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: BibleName
+        m_OriginalName: BibleName
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -2521498
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -583,9 +583,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1515
+    x: 1525
     y: 73
-    width: 481
+    width: 471
     height: 1296
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -624,9 +624,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 746a0000
-    m_LastClickedID: 27252
-    m_ExpandedIDs: 00000000606a0000
+    m_SelectedIDs: b06a0000
+    m_LastClickedID: 27312
+    m_ExpandedIDs: 00000000606a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -679,8 +679,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 98680000
-    m_LastClickedInstanceID: 26776
+    m_SelectedInstanceIDs: 78680000
+    m_LastClickedInstanceID: 26744
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
@@ -1140,9 +1140,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.77639776, y: 0.5708967, z: 1.2011431}
+    m_Target: {x: -5.574482, y: 0.85941875, z: 1.3541807}
     speed: 2
-    m_Value: {x: -0.77639776, y: 0.5708967, z: 1.2011431}
+    m_Value: {x: -5.574482, y: 0.85941875, z: 1.3541807}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1188,9 +1188,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.09494369, y: 0.8183925, z: -0.14158599, w: -0.5487885}
+    m_Target: {x: -0.11699507, y: 0.15926936, z: -0.019012203, w: -0.9800895}
     speed: 2
-    m_Value: {x: -0.09494388, y: 0.8183942, z: -0.14158627, w: -0.5487896}
+    m_Value: {x: -0.116995566, y: 0.15927005, z: -0.019012285, w: -0.9800937}
   m_Size:
     m_Target: 0.3144885
     speed: 2

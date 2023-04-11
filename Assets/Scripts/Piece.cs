@@ -23,7 +23,7 @@ public class Piece
     {
         position = Vector3.zero;
         gridPosition = Vector2.zero;
-        pieceType = PieceTypes.Deborah;
+        pieceType = PieceTypes.Andrew;
         setForDestruction = false;
     }
 

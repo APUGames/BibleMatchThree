@@ -68,7 +68,7 @@ public class GridController : MonoBehaviour
                 GameObject gameObject = Instantiate(piecePrefab, newPiece.GetPosition(), Quaternion.identity);
                 int theNumber = rand.Next(13, 101);
                 // Debug.Log(theNumber);
-                if (theNumber > 30 && theNumber < 45)
+                if (theNumber > 30 && theNumber < 45) // 30 < x < 45, 31-44
                 {
                     // Debug.Log("changing color");
                     // Get the Renderer component from the new game object
@@ -78,8 +78,10 @@ public class GridController : MonoBehaviour
                     gameObjectRenderer.material = pieceOneMaterial;
 
                     newPiece.SetPieceType(PieceTypes.Elisha);
+
+                    gameObject.GetComponentInChildren<Text>().text = "Elisha";
                 }
-                else if (theNumber >= 45 && theNumber < 60)
+                else if (theNumber >= 45 && theNumber < 60) // 45 <= x < 60, 45-59
                 {
                     // Debug.Log("changing color");
                     // Get the Renderer component from the new game object
@@ -89,6 +91,8 @@ public class GridController : MonoBehaviour
                     gameObjectRenderer.material = pieceFourMaterial;
 
                     newPiece.SetPieceType(PieceTypes.Lamb);
+
+                    gameObject.GetComponentInChildren<Text>().text = "Lamb";
                 }
                 else if (theNumber >= 60 && theNumber < 85)
                 {
@@ -99,7 +103,9 @@ public class GridController : MonoBehaviour
                     // Call SetColor using the shader property name "_Color" and setting the color to red
                     gameObjectRenderer.material = pieceSecondMaterial;
 
-                    newPiece.SetPieceType(PieceTypes.Andrew);
+                    newPiece.SetPieceType(PieceTypes.Deborah);
+
+                    gameObject.GetComponentInChildren<Text>().text = "Deborah";
                 }
                 else if (theNumber >= 85 && theNumber < 101)
                 {
@@ -111,6 +117,8 @@ public class GridController : MonoBehaviour
                     gameObjectRenderer.material = pieceThirdMaterial;
 
                     newPiece.SetPieceType(PieceTypes.Hannah);
+
+                    gameObject.GetComponentInChildren<Text>().text = "Hannah";
                 }
 
                 // Set new piece to game object's piece controller
@@ -163,6 +171,10 @@ public class GridController : MonoBehaviour
         {
             // Catch IndexOutOfRangeException when the grid is asked to retrieve a
             // piece from an unknown location.
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
         }
 
         return null;
@@ -330,11 +342,42 @@ public class GridController : MonoBehaviour
         if (!matchFound)
         {
             // Checking for pattern of moving up, down, left, or right and having
+            // two matching types below
+            try
+            {
+                Piece belowPiece = GetGridPiece((int)end.x, (int)end.y + 1);
+                Piece belowBelowPiece = GetGridPiece((int)end.x, (int)end.y + 2);
+                Piece checkPiece4 = GetGridPiece((int)start.x, (int)start.y);
+                if (belowPiece.GetPieceType() == belowBelowPiece.GetPieceType())
+                {
+                    if (belowPiece.GetPieceType() == checkPiece4.GetPieceType())
+                    {
+                        matchFound = true;
+                        validMoveInProcess = true;
+                        Piece toDestroy2 = GetGridPiece((int)end.x, (int)end.y);
+
+                        belowPiece.SetForDestruction();
+                        belowBelowPiece.SetForDestruction();
+                        toDestroy2.SetForDestruction();
+
+                        Debug.Log("======= MATCHED =======");
+                    }
+                }
+            }
+            catch (NullReferenceException)
+            {
+                // Object reference not set to an instance of an object
+            }
+        }
+
+        if (!matchFound)
+        {
+            // Checking for pattern of moving up, down, left, or right and having
             // two matching types above
             try
             {
-                Piece abovePiece = GetGridPiece((int)end.x, (int)end.y + 1);
-                Piece aboveAbovePiece = GetGridPiece((int)end.x, (int)end.y + 2);
+                Piece abovePiece = GetGridPiece((int)end.x, (int)end.y - 1);
+                Piece aboveAbovePiece = GetGridPiece((int)end.x, (int)end.y - 2);
                 Piece checkPiece4 = GetGridPiece((int)start.x, (int)start.y);
                 if (abovePiece.GetPieceType() == aboveAbovePiece.GetPieceType())
                 {
