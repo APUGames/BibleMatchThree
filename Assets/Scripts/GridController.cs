@@ -236,16 +236,22 @@ public class GridController : MonoBehaviour
                 Piece midPiece1 = GetGridPiece((int)start.x, (int)start.y);
                 Piece toDestroy1 = GetGridPiece((int)end.x, (int)end.y);
                 Debug.Log("Mid piece type: " + midPiece1.GetPieceType());
+
                 if (topPiece1.GetPieceType() == bottomPiece1.GetPieceType())
                 {
                     if (topPiece1.GetPieceType() == midPiece1.GetPieceType())
                     {
-                        matchFound = true;
-                        validMoveInProcess = true;
-                        topPiece1.SetForDestruction();
-                        bottomPiece1.SetForDestruction();
-                        toDestroy1.SetForDestruction();
-                        Debug.Log("======= MATCHED =======");
+                        // Check that the start and end are not in the same
+                        // column
+                        if (start.x != end.x)
+                        {
+                            matchFound = true;
+                            validMoveInProcess = true;
+                            topPiece1.SetForDestruction();
+                            bottomPiece1.SetForDestruction();
+                            toDestroy1.SetForDestruction();
+                            Debug.Log("======= MATCHED =======");
+                        }
                     }
                 }
             }
@@ -328,14 +334,19 @@ public class GridController : MonoBehaviour
                 {
                     if (rightPiece.GetPieceType() == checkPiece3.GetPieceType())
                     {
-                        matchFound = true;
-                        validMoveInProcess = true;
-                        Piece toDestroy2 = GetGridPiece((int)end.x, (int)end.y);
+                        // Check that the start and end are not in the same
+                        // row
+                        if (start.y != end.y)
+                        {
+                            matchFound = true;
+                            validMoveInProcess = true;
+                            Piece toDestroy2 = GetGridPiece((int)end.x, (int)end.y);
 
-                        rightPiece.SetForDestruction();
-                        leftPiece.SetForDestruction();
-                        toDestroy2.SetForDestruction();
-                        Debug.Log("======= MATCHED =======");
+                            rightPiece.SetForDestruction();
+                            leftPiece.SetForDestruction();
+                            toDestroy2.SetForDestruction();
+                            Debug.Log("======= MATCHED =======");
+                        }
                     }
                 }
             }
