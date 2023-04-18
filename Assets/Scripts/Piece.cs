@@ -68,7 +68,7 @@ public class Piece
         return position;
     }
 
-    public Vector3 GetGridPosition()
+    public Vector2 GetGridPosition()
     {
         return gridPosition;
     }

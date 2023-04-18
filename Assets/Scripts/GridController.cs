@@ -27,16 +27,10 @@ public class GridController : MonoBehaviour
     public GameObject pressedDownGameObject;
     public GameObject pressedUpGameObject;
 
-    [Header("UI")]
-    [SerializeField]
-    private GameObject matchesFoundText;
-
     private Vector2 startMovementPiecePosition;
     private Vector2 endMovementPiecePosition;
 
     private bool validMoveInProcess = false;
-
-    private int matchesFound;
 
     // Section for tuning
 
@@ -47,10 +41,6 @@ public class GridController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Debug.Log(grid);
-
-        matchesFound = 0;
-
         pressedDown = false;
 
         System.Random rand = new System.Random();
@@ -154,10 +144,8 @@ public class GridController : MonoBehaviour
 
             validMoveInProcess = false;
 
-            matchesFound += 1;
+            AddMatchesFound();
         }
-
-        matchesFoundText.GetComponent<Text>().text = matchesFound.ToString();
     }
 
     private Piece GetGridPiece(int row, int column)
@@ -211,6 +199,20 @@ public class GridController : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void SubtractMove()
+    {
+        // Subtract one from turns left in the game manager
+        GameManager gameManager = gameObject.GetComponent<GameManager>();
+        gameManager.SubtractOneFromTurnsLeft();
+    }
+
+    private void AddMatchesFound()
+    {
+        // Subtract one from turns left in the game manager
+        GameManager gameManager = gameObject.GetComponent<GameManager>();
+        gameManager.AddOneToMatchesFound();
     }
 
     public void ValidMove(Vector2 start, Vector2 end)
@@ -417,6 +419,8 @@ public class GridController : MonoBehaviour
                 // Object reference not set to an instance of an object
             }
         }
+
+        SubtractMove();
 
         Debug.Log("not valid move");
     }
